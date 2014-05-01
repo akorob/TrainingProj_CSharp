@@ -1,0 +1,7 @@
+c:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\ConsoleApplication2\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+c:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\ConsoleApplication2\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+c:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\ConsoleApplication2\ConsoleApplication1\obj\x86\Release\ResolveAssemblyReference.cache
+c:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\ConsoleApplication2\ConsoleApplication1\obj\x86\Release\ConsoleApplication1.exe
+c:\Documents and Settings\Admin\Мои документы\Visual Studio 2010\Projects\ConsoleApplication2\ConsoleApplication1\obj\x86\Release\ConsoleApplication1.pdb
+c:\work\VS2010\ConsoleApplication1\obj\x86\Release\ConsoleApplication1.exe
+c:\work\VS2010\ConsoleApplication1\obj\x86\Release\ConsoleApplication1.pdb
