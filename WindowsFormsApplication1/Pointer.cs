@@ -4,31 +4,49 @@ namespace WindowsFormsApplication1
 {
         class Pointer
         {
+
+            /// Обрабатываемый массив
+            public int[,] Array { get; private set; }
+
             // Текущий элемент строки x.  
-            public int x = 0;
+            private int _x = 0;
             // Текущая строка y.
-            public int y = 0;
-            // Обрабатываемый массив
-            public int[,] array { get; set; }
+            private int _y = 0;
             private enum Direction { Right, Down, Left, Up };
-            private Direction currentDir = Direction.Right;
-            // Конструктор
+            private Direction _currentDir = Direction.Right;
+
             public Pointer(int[,] a)
             {
-                x = 0;
-                y = 0;
-                array = a;
+                this.Array = a;
             }
+
+
+            /// Заполняет массив "змейкой".
+            public void DoMagic()
+            {
+                var counter = 0;
+                do
+                {
+                    counter++;
+                    Array[_x, _y] = counter;
+                }
+                while (FindNext());
+            }
+
+
+
+
+
             // Поиск следующего элемента массива в заданном порядке;
             // возвращает false, если элемент отсутствует.
-            public bool FindNext()
+            private bool FindNext()
             {
-                int tmpX = x;
-                int tmpY = y;
-                int fails = 0;
+                var tmpX = _x;
+                var tmpY = _y;
+                var fails = 0;
                 while (true)
                 {
-                    switch (currentDir)
+                    switch (_currentDir)
                     {
                         case Direction.Right:
                             tmpX++;
@@ -44,21 +62,21 @@ namespace WindowsFormsApplication1
                             break;
                     }
 
-                    if (tmpX >= 0 && tmpX <= array.GetUpperBound(0) &&
-                         tmpY >= 0 && tmpY <= array.GetUpperBound(1))
+                    if (tmpX >= 0 && tmpX <= Array.GetUpperBound(0) &&
+                         tmpY >= 0 && tmpY <= Array.GetUpperBound(1))
                     {
-                        Console.WriteLine("tmpX={0}, tmpY={1}", tmpX, tmpY);
-                        if (array[tmpX, tmpY] == 0)
+
+                        if (Array[tmpX, tmpY] == 0)
                         {
-                            x = tmpX;
-                            y = tmpY;
+                            _x = tmpX;
+                            _y = tmpY;
                             return true;
                         }
                     }
                     // Вышли за границу массива или элемент уже преобразован.
-                    tmpX = x;
-                    tmpY = y;
-                    currentDir = NewDirection(currentDir);
+                    tmpX = _x;
+                    tmpY = _y;
+                    _currentDir = NewDirection(_currentDir);
                     // Нет подходящих элементов по всем направлениям.
                     if (++fails == 4) return false;
                 }

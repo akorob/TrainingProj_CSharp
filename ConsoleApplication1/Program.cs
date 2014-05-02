@@ -1,6 +1,6 @@
 ﻿using System;
 // Ver 0.2 : учтены замечания по v 0.1
-namespace ConsoleApplication2 {
+namespace ConsoleApplication1 {
     class Pointer 
     {
         // Текущий элемент строки x.  
