@@ -10,7 +10,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
 
-namespace MyApplication {
+namespace SnakeArray {
+	/// Главная форма приложения.
     public partial class FormView : Form {
 
         public FormView() {
@@ -18,19 +19,20 @@ namespace MyApplication {
 			_appSettings = new Settings();
         }
         
-        // Для доступа из DataGridViewPrinter
+        /// Свойство для доступа из класса DataGridViewPrinter.
         public DataGridView MyDataGrid
         {
             get { return dataGrid; } 
         }
 
-        // Для доступа из FilePrinter
+        /// Свойство для доступа из класса FilePrinter.
         public TextBox MyTextBox
         {
             get { return textBox1; }
         }
 
 	    private Settings _appSettings;
+		private Pointer _snakePointer;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -59,54 +61,27 @@ namespace MyApplication {
             button2.Enabled = true;
             var numRows = (int)rowsUpDown.Value;
             var numColumns = (int)columnsUpDown.Value;
-            var p = new Pointer(new int[numColumns, numRows]);
-            p.DoMagic();
-
-	        try
-	        {
-		        IPrinter printer = new DataGridViewPrinter();
-		        printer.Print(p.Array);
-	        }
-	        catch (InvalidOperationException ex)
-	        {
-		         MessageBox.Show("Произошла ошибка \n" + ex.ToString(), "Построение", 
-					MessageBoxButtons.OK, MessageBoxIcon.Error );
-	        }
-			catch (ArgumentOutOfRangeException ex)
-	        {
-		         MessageBox.Show("Произошла ошибка \n" + ex.ToString(), "Построение", 
-					MessageBoxButtons.OK, MessageBoxIcon.Error );
-	        }
+            _snakePointer = new Pointer(new int[numColumns, numRows]);
+            _snakePointer.DoMagic();
+		    IPrinter printer = new DataGridViewPrinter();
+		    printer.Print(_snakePointer.Array);
+	       
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+			// Валидация данных TextBox.
             if (textBox1.Text.Length < 1)
             {
                 MessageBox.Show("Файл не указан", "Сохранение файла", 
 					MessageBoxButtons.OK, MessageBoxIcon.Error );
                 return;
             }
-            var numRows = (int)rowsUpDown.Value;
-            var numColumns = (int)columnsUpDown.Value;
-            var p = new Pointer(new int[numColumns, numRows]);
-            p.DoMagic();
 
-            try
-            {
-                IPrinter printer = new FilePrinter();
-                printer.Print(p.Array);
-                MessageBox.Show("Данные успешно сохранены", 
-					"Сохранение файла", MessageBoxButtons.OK, MessageBoxIcon.None );
-            }
-            catch (IOException error)
-            {
-                MessageBox.Show("Ошибка при сохранении файла \n"+ error.ToString(), 
-					"Сохранение файла", MessageBoxButtons.OK, MessageBoxIcon.None );
-            }
-
-        }
+            IPrinter printer = new FilePrinter();
+            printer.Print(_snakePointer.Array);
+		}
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -134,11 +109,13 @@ namespace MyApplication {
 		private void FormView_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			_appSettings.Path = textBox1.Text;
-			_appSettings.NumRows = (int)rowsUpDown.Value;
-			_appSettings.NumColumns = (int)columnsUpDown.Value;
-			_appSettings.SaveAppSettings();
+			_appSettings.NumRows = (int) rowsUpDown.Value;
+			_appSettings.NumColumns = (int) columnsUpDown.Value;
+			_appSettings.SaveAppSettings();	
 		}
 
         
-    }
+
+}
+
 }

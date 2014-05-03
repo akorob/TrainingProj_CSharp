@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyApplication.Properties {
+namespace SnakeArray.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

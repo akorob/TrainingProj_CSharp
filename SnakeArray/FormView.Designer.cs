@@ -1,4 +1,5 @@
-﻿namespace MyApplication {
+﻿namespace SnakeArray
+{
     partial class FormView {
         /// <summary>
         /// Required designer variable.

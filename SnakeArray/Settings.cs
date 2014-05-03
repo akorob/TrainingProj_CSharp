@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using System.Xml;
 
 
-namespace MyApplication
+
+namespace SnakeArray
 {
+	/// Класс для хранения и сериализации/десереализации 
+	/// настроек приложения в XML.
     public class Settings
     {
         private int _numColumns;

@@ -1,11 +1,12 @@
 ﻿using System;
 
-namespace MyApplication
+namespace SnakeArray
 {
+		/// Класс для хранения и обработки массива.
         class Pointer
         {
 
-            /// Обрабатываемый массив
+            /// Обрабатываемый массив.
             public int[,] Array { get; private set; }
 
             // Текущий элемент строки x.  
@@ -15,9 +16,9 @@ namespace MyApplication
             private enum Direction { Right, Down, Left, Up };
             private Direction _currentDir = Direction.Right;
 
-            public Pointer(int[,] a)
+            public Pointer(int[,] array)
             {
-                this.Array = a;
+                this.Array = array;
             }
 
 
@@ -78,7 +79,8 @@ namespace MyApplication
                     tmpY = _y;
                     _currentDir = NewDirection(_currentDir);
                     // Нет подходящих элементов по всем направлениям.
-                    if (++fails == 4) return false;
+                    if (++fails == 4) 
+						return false;
                 }
             }
 
