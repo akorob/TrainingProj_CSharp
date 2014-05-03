@@ -1,0 +1,4 @@
+C:\work\VS2010\ConsoleApplication2\obj\x86\Release\ConsoleApplication2.exe
+C:\work\VS2010\ConsoleApplication2\obj\x86\Release\ConsoleApplication2.pdb
+C:\work\VS2010\ConsoleApplicationV1\obj\x86\Release\ConsoleApplication2.exe
+C:\work\VS2010\ConsoleApplicationV1\obj\x86\Release\ConsoleApplication2.pdb
