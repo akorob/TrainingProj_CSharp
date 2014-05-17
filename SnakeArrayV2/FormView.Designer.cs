@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent() {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonBuild = new System.Windows.Forms.Button();
             this.columnsUpDown = new System.Windows.Forms.NumericUpDown();
             this.rowsUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.columnsLabel = new System.Windows.Forms.Label();
+            this.rowsLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.textBoxFilePath = new System.Windows.Forms.TextBox();
+            this.buttonSelectFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.columnsUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowsUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonBuild
             // 
-            this.button1.Location = new System.Drawing.Point(112, 311);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Построить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonBuild.Location = new System.Drawing.Point(112, 311);
+            this.buttonBuild.Name = "buttonBuild";
+            this.buttonBuild.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuild.TabIndex = 0;
+            this.buttonBuild.Text = "Построить";
+            this.buttonBuild.UseVisualStyleBackColor = true;
+            this.buttonBuild.Click += new System.EventHandler(this.buttonBuild_Click);
             // 
             // columnsUpDown
             // 
@@ -96,23 +96,23 @@
             0,
             0});
             // 
-            // label1
+            // columnsLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(84, 229);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Столбцы";
+            this.columnsLabel.AutoSize = true;
+            this.columnsLabel.Location = new System.Drawing.Point(84, 229);
+            this.columnsLabel.Name = "columnsLabel";
+            this.columnsLabel.Size = new System.Drawing.Size(51, 13);
+            this.columnsLabel.TabIndex = 3;
+            this.columnsLabel.Text = "Столбцы";
             // 
-            // label2
+            // rowsLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 229);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Строки";
+            this.rowsLabel.AutoSize = true;
+            this.rowsLabel.Location = new System.Drawing.Point(163, 229);
+            this.rowsLabel.Name = "rowsLabel";
+            this.rowsLabel.Size = new System.Drawing.Size(43, 13);
+            this.rowsLabel.TabIndex = 4;
+            this.rowsLabel.Text = "Строки";
             // 
             // flowLayoutPanel1
             // 
@@ -141,42 +141,42 @@
             this.dataGrid.Size = new System.Drawing.Size(286, 222);
             this.dataGrid.TabIndex = 7;
             // 
-            // textBox1
+            // textBoxFilePath
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 279);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(194, 20);
-            this.textBox1.TabIndex = 9;
+            this.textBoxFilePath.Location = new System.Drawing.Point(12, 279);
+            this.textBoxFilePath.Name = "textBoxFilePath";
+            this.textBoxFilePath.Size = new System.Drawing.Size(194, 20);
+            this.textBoxFilePath.TabIndex = 9;
             // 
-            // button3
+            // buttonSelectFile
             // 
-            this.button3.Location = new System.Drawing.Point(214, 279);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Файл...";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonSelectFile.Location = new System.Drawing.Point(214, 279);
+            this.buttonSelectFile.Name = "buttonSelectFile";
+            this.buttonSelectFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonSelectFile.TabIndex = 10;
+            this.buttonSelectFile.Text = "Файл...";
+            this.buttonSelectFile.UseVisualStyleBackColor = true;
+            this.buttonSelectFile.Click += new System.EventHandler(this.buttonSelectFile_Click);
             // 
             // FormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 346);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.buttonSelectFile);
+            this.Controls.Add(this.textBoxFilePath);
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.rowsLabel);
+            this.Controls.Add(this.columnsLabel);
             this.Controls.Add(this.rowsUpDown);
             this.Controls.Add(this.columnsUpDown);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonBuild);
             this.Name = "FormView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Змейка";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormView_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.columnsUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowsUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
@@ -187,14 +187,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonBuild;
         private System.Windows.Forms.NumericUpDown columnsUpDown;
         private System.Windows.Forms.NumericUpDown rowsUpDown;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label columnsLabel;
+        private System.Windows.Forms.Label rowsLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBoxFilePath;
+        private System.Windows.Forms.Button buttonSelectFile;
         private System.Windows.Forms.DataGridView dataGrid;
     }
 }

@@ -7,3 +7,6 @@ C:\work\SnakeArray\SnakeArrayV2\obj\x86\Release\SnakeArray.FormView.resources
 C:\work\SnakeArray\SnakeArrayV2\obj\x86\Release\SnakeArray.Properties.Resources.resources
 C:\work\SnakeArray\SnakeArrayV2\obj\x86\Release\GenerateResource.read.1.tlog
 C:\work\SnakeArray\SnakeArrayV2\obj\x86\Release\GenerateResource.write.1.tlog
+c:\work\SnakeArray\SnakeArrayV2\bin\Release\NLog.config
+c:\work\SnakeArray\SnakeArrayV2\bin\Release\NLog.dll
+c:\work\SnakeArray\SnakeArrayV2\bin\Release\NLog.xml

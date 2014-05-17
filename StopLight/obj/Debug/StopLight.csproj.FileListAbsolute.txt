@@ -1,0 +1,13 @@
+c:\work\Stoplight\Src\bin\Debug\StopLight.exe
+c:\work\Stoplight\Src\bin\Debug\StopLight.pdb
+c:\work\Stoplight\Src\bin\Debug\Microsoft.Practices.Unity.dll
+c:\work\Stoplight\Src\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+c:\work\Stoplight\Src\bin\Debug\Microsoft.Practices.Unity.pdb
+c:\work\Stoplight\Src\bin\Debug\Microsoft.Practices.Unity.xml
+c:\work\Stoplight\Src\obj\Debug\ResolveAssemblyReference.cache
+c:\work\Stoplight\Src\obj\Debug\StopLight.Properties.Resources.resources
+c:\work\Stoplight\Src\obj\Debug\StopLight.UI.StoplightForm.resources
+c:\work\Stoplight\Src\obj\Debug\GenerateResource-ResGen.read.1.tlog
+c:\work\Stoplight\Src\obj\Debug\GenerateResource-ResGen.write.1.tlog
+c:\work\Stoplight\Src\obj\Debug\StopLight.exe
+c:\work\Stoplight\Src\obj\Debug\StopLight.pdb

@@ -1,0 +1,13 @@
+C:\work\SnakeArray\StopLight\bin\Release\StopLight.exe
+C:\work\SnakeArray\StopLight\bin\Release\StopLight.pdb
+C:\work\SnakeArray\StopLight\bin\Release\Microsoft.Practices.Unity.dll
+C:\work\SnakeArray\StopLight\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\work\SnakeArray\StopLight\bin\Release\Microsoft.Practices.Unity.pdb
+C:\work\SnakeArray\StopLight\bin\Release\Microsoft.Practices.Unity.xml
+C:\work\SnakeArray\StopLight\obj\Release\ResolveAssemblyReference.cache
+C:\work\SnakeArray\StopLight\obj\Release\StopLight.Properties.Resources.resources
+C:\work\SnakeArray\StopLight\obj\Release\StopLight.UI.StoplightForm.resources
+C:\work\SnakeArray\StopLight\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\work\SnakeArray\StopLight\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\work\SnakeArray\StopLight\obj\Release\StopLight.exe
+C:\work\SnakeArray\StopLight\obj\Release\StopLight.pdb

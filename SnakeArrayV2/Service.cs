@@ -3,13 +3,13 @@
 namespace SnakeArray
 {
         ///<summary>
-        /// Класс для хранения и обработки массива.
+        /// Класс для обработки массива.
         /// </summary>
-        class Pointer
+        class Service
         {
-
-            /// Обрабатываемый массив.
-            public int[,] Array { get; private set; }
+            private int[,] _array;
+            private int _numColumns;
+            private int _numRows;
 
             // Текущий элемент строки x.  
             private int _x = 0;
@@ -18,25 +18,24 @@ namespace SnakeArray
             private enum Direction { Right, Down, Left, Up };
             private Direction _currentDir = Direction.Right;
 
-            public Pointer(int[,] array)
-            {
-                this.Array = array;
-            }
-
 
             /// Заполняет массив "змейкой".
             /// <exception cref="MissingMemberException">
             /// Неверное использование перечисления Direction
             /// </exception>
-            public void DoMagic()
+            public Model CalculateModel(int numColumns, int numRows)
             {
+                _numRows = numRows;
+                _numColumns = numColumns;
+                _array = new int[numColumns, numRows];
                 var counter = 0;
                 do
                 {
                     counter++;
-                    Array[_x, _y] = counter;
+                    _array[_x, _y] = counter;
                 }
                 while (FindNext());
+                return new Model(_numColumns, _numRows, _array);
             }
 
 
@@ -68,11 +67,11 @@ namespace SnakeArray
                             break;
                     }
 
-                    if (tmpX >= 0 && tmpX <= Array.GetUpperBound(0) &&
-                         tmpY >= 0 && tmpY <= Array.GetUpperBound(1))
+                    if (tmpX >= 0 && tmpX < _numColumns &&
+                         tmpY >= 0 && tmpY < _numRows)
                     {
 
-                        if (Array[tmpX, tmpY] == 0)
+                        if (_array[tmpX, tmpY] == 0)
                         {
                             _x = tmpX;
                             _y = tmpY;

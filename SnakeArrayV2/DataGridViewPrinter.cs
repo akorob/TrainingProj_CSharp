@@ -10,47 +10,32 @@ namespace SnakeArray
     
     class DataGridViewPrinter: IPrinter
     {
-        private FormView GetMainForm()
+    
+        public DataGridView DataGrid { get; set; }
+
+        public void Print(Model model)
         {
-            foreach (var form in Application.OpenForms)
-            {
-                var res = form as FormView;
-                if (res != null)
-                {
-                    return res;
-                }
-            }
-            throw new MissingMemberException("Main Form not found");
-        }
-
-
-
-
-        public void Print(int[,] array)
-        {
-            var mainForm = GetMainForm();
  			try
 	        {
-				var numColumns = array.GetUpperBound(0) + 1;
-		        var numRows = array.GetUpperBound(1) + 1;
-				mainForm.MyDataGrid.Rows.Clear();
-				mainForm.MyDataGrid.ColumnCount = numColumns;
-				mainForm.MyDataGrid.RowCount = numRows;
-				for (var j = 0; j < numRows; j++)
+
+				DataGrid.Rows.Clear();
+				DataGrid.ColumnCount = model.NumColumns;
+				DataGrid.RowCount = model.NumRows;
+                for (var j = 0; j < model.NumRows; j++)
 				{
-					for (var i = 0; i < numColumns; i++)
+                    for (var i = 0; i < model.NumColumns; i++)
 					{
-						mainForm.MyDataGrid.Rows[j].Cells[i].Value = array[i, j];
+						DataGrid.Rows[j].Cells[i].Value = model.Array[i, j];
 					}
 				}
 	        }
 	        catch (InvalidOperationException ex)
 	        {
-		         MessageBox.Show(ex.ToString());
+		            MessageBox.Show(ex.ToString());
 	        }
 			catch (ArgumentException ex)
 	        {
-		         MessageBox.Show(ex.ToString());
+		            MessageBox.Show(ex.ToString());
 	        }
 			catch (IndexOutOfRangeException ex)
 			{

@@ -9,100 +9,58 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
+using NLog;
 
 namespace SnakeArray 
 {
-	/// Главная форма приложения.
+    ///<summary>
+    /// Главная форма приложения.
+    /// </summary>
+
     public partial class FormView : Form 
     {
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        
         public FormView() 
         {
             InitializeComponent();
-			_appSettings = new Settings();
+			_appSettings = Settings.Instance;
         }
         
-        /// Свойство для доступа из класса DataGridViewPrinter.
-        public DataGridView MyDataGrid
-        {
-            get { return dataGrid; } 
-        }
-
-        /// Свойство для доступа из класса FilePrinter.
-        public TextBox MyTextBox
-        {
-            get { return textBox1; }
-        }
 
 	    private Settings _appSettings;
-		private Pointer _snakePointer;
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void buttonBuild_Click(object sender, EventArgs e)
         {
-			if(_appSettings.LoadAppSettings() )
-			{
-				textBox1.Text = _appSettings.Path;
-				try
-				{
-					rowsUpDown.Value = _appSettings.NumRows;
-					columnsUpDown.Value = _appSettings.NumColumns;
-				}
-				catch (ArgumentOutOfRangeException ex)
-				{
-					MessageBox.Show("В конфигурационном файле неверные данные \n" + ex.ToString(), 
-					"Инициализация", MessageBoxButtons.OK, MessageBoxIcon.Error );
-				}
-				
-			}
-		}
-
-
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //button2.Enabled = true;
             var numRows = (int)rowsUpDown.Value;
             var numColumns = (int)columnsUpDown.Value;
-            _snakePointer = new Pointer(new int[numColumns, numRows]);
-            _snakePointer.DoMagic();
+            var model = new Service().CalculateModel(numColumns, numRows);
+		    var printer = new DataGridViewPrinter();
+            printer.DataGrid = this.dataGrid;
+		    printer.Print(model);
 
-		    IPrinter printer = new DataGridViewPrinter();
-		    printer.Print(_snakePointer.Array);
-
-            DialogResult result = MessageBox.Show("Сохранить в файл?", "Сохранение в файл",
+            var result = MessageBox.Show("Сохранить в файл?", "Сохранение в файл",
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (result == DialogResult.OK)
+            if (result != DialogResult.OK)
+                return;
+            
+            // Валидация данных TextBox.
+            if (string.IsNullOrEmpty(textBoxFilePath.Text))
             {
-                // Валидация данных TextBox.
-                if (textBox1.Text.Length < 1)
-                {
-                    MessageBox.Show("Файл не указан", "Сохранение файла",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                IPrinter prntr = new FilePrinter();
-                prntr.Print(_snakePointer.Array);
+                MessageBox.Show("Файл не указан", "Сохранение файла",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            var prntr = new FilePrinter();
+            prntr.Path = textBoxFilePath.Text;
+            prntr.Print(model);
+            
 	       
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-			// Валидация данных TextBox.
-            if (textBox1.Text.Length < 1)
-            {
-                MessageBox.Show("Файл не указан", "Сохранение файла", 
-					MessageBoxButtons.OK, MessageBoxIcon.Error );
-                return;
-            }
 
-            IPrinter printer = new FilePrinter();
-            printer.Print(_snakePointer.Array);
-		}
-
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonSelectFile_Click(object sender, EventArgs e)
         {
             var openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*";
@@ -110,7 +68,7 @@ namespace SnakeArray
             openFileDialog1.Multiselect = false;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                textBox1.Text = openFileDialog1.FileName;
+                textBoxFilePath.Text = openFileDialog1.FileName;
             }
             
         }
@@ -118,13 +76,41 @@ namespace SnakeArray
 
 		private void FormView_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			_appSettings.Path = textBox1.Text;
+			_appSettings.Path = textBoxFilePath.Text;
 			_appSettings.NumRows = (int) rowsUpDown.Value;
 			_appSettings.NumColumns = (int) columnsUpDown.Value;
 			_appSettings.SaveAppSettings();	
 		}
 
-        
+        private void FormView_Load(object sender, EventArgs e)
+        {
+            logger.Trace("Sample trace message");
+            logger.Debug("Sample debug message");
+            logger.Info("Sample informational message");
+            logger.Warn("Sample warning message");
+            logger.Error("Sample error message");
+            logger.Fatal("Sample fatal error message");
+            textBoxFilePath.Text = _appSettings.Path;
+           if (_appSettings.LoadAppSettings())
+            {
+               
+                try
+                {
+                    rowsUpDown.Value = _appSettings.NumRows;
+                    columnsUpDown.Value = _appSettings.NumColumns;
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    MessageBox.Show("В конфигурационном файле неверные данные \n" + ex.ToString(),
+                    "Инициализация", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+
+
+       
 
     }
 

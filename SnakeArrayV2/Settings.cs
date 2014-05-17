@@ -11,67 +11,52 @@ namespace SnakeArray
 	/// Класс для хранения и сериализации/десереализации 
 	/// настроек приложения в XML.
     /// </summary>
+    [Serializable]
     public class Settings
     {
         private int _numColumns;
         private int _numRows;
-        private String _path;
-	    private bool _appSettingsChanged;
+        private string _path;
 
+        private static  Settings _instance = new Settings();
+        public static Settings Instance
+        {
+                get { return _instance; }
+        }
+        private Settings() { }
+
+
+        [XmlElement]
 	    public int NumColumns
 	    {
 		    get { return _numColumns; }
-		    set
-		    {
-			    if(value != _numColumns)
-				{
-					_numColumns = value;
-					_appSettingsChanged = true;
-				}
-				
-		    }
+		    set { _numColumns = value; }
 	    }
 
-	    public int NumRows
-	    {
-		    get { return _numRows; }
-		    set
-		    {
-			    if(value != _numRows)
-				{
-					_numRows = value;
-					_appSettingsChanged = true;
-				}
-		    }
-	    }
+        [XmlElement]
+        public int NumRows
+        {
+            get { return _numRows; }
+            set { _numRows = value; }
+        }
 
-	    public string Path
-	    {
-		    get { return _path; }
-		    set
-		    {
-			    if(value != _path)
-				{
-					_path = value;
-					_appSettingsChanged = true;
-				}
-		    }
-	    }
+        [XmlElement]
+        public string Path
+        {
+            get { return _path; }
+            set { _path = value; }
+        }
 
 
-      public bool SaveAppSettings()
-      {
-         if(_appSettingsChanged)
-         {
+        public void SaveAppSettings()
+        {
             StreamWriter myWriter = null;
             XmlSerializer mySerializer = null;
             try
             {
-               mySerializer = new XmlSerializer( 
-                 typeof(Settings));
-               myWriter = 
-                 new StreamWriter(Application.CommonAppDataPath
-                 + @"\app.config",false);
+               mySerializer = new XmlSerializer(typeof(Settings));
+               var filePath = System.IO.Path.Combine(Application.CommonAppDataPath, "app.config");
+               myWriter = new StreamWriter(filePath, false);
                mySerializer.Serialize(myWriter, this);
             }
             catch(Exception ex)
@@ -86,8 +71,6 @@ namespace SnakeArray
                   myWriter.Close();
                }
             }
-         }
-         return _appSettingsChanged;
       }
 
 
@@ -100,8 +83,8 @@ namespace SnakeArray
          try
          {
             mySerializer = new XmlSerializer(typeof(Settings));
-            var fi = new FileInfo(Application.CommonAppDataPath
-               + @"\app.config");
+            var filePath = System.IO.Path.Combine(Application.CommonAppDataPath, "app.config");
+            var fi = new FileInfo(filePath);
             if(fi.Exists)
             {
                myFileStream = fi.OpenRead();

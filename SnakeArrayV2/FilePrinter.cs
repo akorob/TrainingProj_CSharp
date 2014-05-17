@@ -10,40 +10,22 @@ namespace SnakeArray
 {
     class FilePrinter : IPrinter
     {
+        public String Path { get; set; }
 
-    private FormView GetMainForm()
-        {
-            foreach (var form in Application.OpenForms)
-            {
-                var res = form as FormView;
-                if (res != null)
-                {
-                    return res;
-                }
-            }
-            throw new MissingMemberException("Main Form not found");
-        }
-
-
-
-	    public void Print(int[,] array)
+	    public void Print(Model model)
 	    {
-		    var mainForm = GetMainForm();
-		    var numColumns = array.GetUpperBound(0) + 1;
-		    var numRows = array.GetUpperBound(1) + 1;
-		    var path = mainForm.MyTextBox.Text;
 		    var sb = new StringBuilder();
-		    for (var j = 0; j < numRows; j++)
+		    for (var j = 0; j < model.NumRows; j++)
 		    {
-			    for (var i = 0; i < numColumns; i++)
+			    for (var i = 0; i < model.NumColumns; i++)
 			    {
-				    sb.AppendFormat("{0,4}", array[i, j]);
+				    sb.AppendFormat("{0,4}", model.Array[i, j]);
 			    }
 			    sb.AppendLine();
 		    }
 		    try
 		    {
-			    using (var w = new StreamWriter(path))
+			    using (var w = new StreamWriter(Path))
 			    {
 				    w.WriteLine(sb.ToString());
 					MessageBox.Show("Данные успешно сохранены", 

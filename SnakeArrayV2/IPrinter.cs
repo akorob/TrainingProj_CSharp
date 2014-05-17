@@ -7,6 +7,6 @@ namespace SnakeArray
 {
     interface IPrinter
     {
-        void Print(int[,] array);
+        void Print(Model model);
     }
 }

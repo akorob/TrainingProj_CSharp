@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,7 +16,10 @@ namespace SnakeArray
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormView());
+            var form = new FormView();
+            Application.Run(form);
         }
+
+
     }
 }
