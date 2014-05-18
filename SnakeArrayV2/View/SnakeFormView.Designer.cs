@@ -1,6 +1,6 @@
-﻿namespace SnakeArray
+﻿namespace SnakeArray.View
 {
-    partial class FormView 
+    partial class SnakeFormView 
     {
         /// <summary>
         /// Required designer variable.
@@ -175,8 +175,6 @@
             this.Name = "FormView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Змейка";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormView_FormClosing);
-            this.Load += new System.EventHandler(this.FormView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.columnsUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowsUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();

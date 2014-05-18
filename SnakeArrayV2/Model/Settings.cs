@@ -2,30 +2,37 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using NLog;
 
-
-
-namespace SnakeArray
+namespace SnakeArray.Model
 {
     ///<summary>
-	/// Класс для хранения и сериализации/десереализации 
+	/// Класс - singlton для хранения и сериализации/десереализации 
 	/// настроек приложения в XML.
     /// </summary>
     [Serializable]
     public class Settings
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private int _numColumns;
         private int _numRows;
         private string _path;
 
+        private XmlSerializer _mySerializer = new XmlSerializer(typeof(Settings));
         private static  Settings _instance = new Settings();
+
+        ///<summary>
+        /// Возвращает экземпляр класса.
+        /// </summary>
         public static Settings Instance
         {
                 get { return _instance; }
         }
         private Settings() { }
 
-
+        ///<summary>
+        /// Количество столбцов матрицы.
+        /// </summary>
         [XmlElement]
 	    public int NumColumns
 	    {
@@ -33,6 +40,9 @@ namespace SnakeArray
 		    set { _numColumns = value; }
 	    }
 
+        ///<summary>
+        /// Количество строк матрицы.
+        /// </summary>
         [XmlElement]
         public int NumRows
         {
@@ -40,6 +50,9 @@ namespace SnakeArray
             set { _numRows = value; }
         }
 
+        ///<summary>
+        /// Путь к файлу вывода.
+        /// </summary>
         [XmlElement]
         public string Path
         {
@@ -47,21 +60,23 @@ namespace SnakeArray
             set { _path = value; }
         }
 
-
+        ///<summary>
+        /// Метод сохранения настроек.
+        /// </summary>
         public void SaveAppSettings()
         {
             StreamWriter myWriter = null;
-            XmlSerializer mySerializer = null;
             try
             {
-               mySerializer = new XmlSerializer(typeof(Settings));
                var filePath = System.IO.Path.Combine(Application.CommonAppDataPath, "app.config");
                myWriter = new StreamWriter(filePath, false);
-               mySerializer.Serialize(myWriter, this);
+               _mySerializer.Serialize(myWriter, this);
+               logger.Debug("Настройки сохранены успешно.");
             }
             catch(Exception ex)
             {
-               MessageBox.Show("Произошла ошибка \n" + ex.ToString(), 
+                logger.Debug("Ошибка сохранения настроек. " + ex.ToString());
+                MessageBox.Show("Произошла ошибка \n" + ex.ToString(), 
 					"Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
             finally
@@ -73,33 +88,32 @@ namespace SnakeArray
             }
       }
 
-
+      ///<summary>
+      /// Метод загрузки настроек.
+      /// </summary>  
       public bool LoadAppSettings()
       {
-         XmlSerializer mySerializer = null;
          FileStream myFileStream = null;
          bool fileExists = false;
-
          try
          {
-            mySerializer = new XmlSerializer(typeof(Settings));
             var filePath = System.IO.Path.Combine(Application.CommonAppDataPath, "app.config");
             var fi = new FileInfo(filePath);
             if(fi.Exists)
             {
                myFileStream = fi.OpenRead();
-               var myAppSettings = 
-                 (Settings)mySerializer.Deserialize(
-                  myFileStream);
+               var myAppSettings = (Settings)_mySerializer.Deserialize(myFileStream);
                _numColumns = myAppSettings.NumColumns;
                _numRows = myAppSettings.NumRows;
                _path = myAppSettings.Path;
                fileExists = true;
+               logger.Debug("Настройки успешно загружены из файла.");
             }
          }
          catch(Exception ex)
          {
-            MessageBox.Show("Произошла ошибка \n" + ex.ToString(), 
+             logger.Debug("Ошибка загрузки настроек. " + ex.ToString());
+             MessageBox.Show("Произошла ошибка \n" + ex.ToString(), 
 					"Инициализация", MessageBoxButtons.OK, MessageBoxIcon.Error );
          }
          finally
@@ -111,10 +125,6 @@ namespace SnakeArray
          }
          return fileExists;
       }
-
-			
-
-
 
 
     }

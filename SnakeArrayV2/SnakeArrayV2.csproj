@@ -49,6 +49,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.1.0\lib\net40\NLog.dll</HintPath>
     </Reference>
@@ -64,22 +66,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormView.cs">
+    <Compile Include="Presenter\SnakePresenter.cs" />
+    <Compile Include="Service\ISnakeService.cs" />
+    <Compile Include="View\SnakeFormView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormView.Designer.cs">
-      <DependentUpon>FormView.cs</DependentUpon>
+    <Compile Include="View\SnakeFormView.Designer.cs">
+      <DependentUpon>SnakeFormView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="DataGridViewPrinter.cs" />
-    <Compile Include="FilePrinter.cs" />
-    <Compile Include="IPrinter.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\Settings.cs" />
+    <Compile Include="Service\DataGridViewPrinter.cs" />
+    <Compile Include="Service\FilePrinter.cs" />
+    <Compile Include="Service\IPrinter.cs" />
+    <Compile Include="Service\SnakeService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormView.resx">
-      <DependentUpon>FormView.cs</DependentUpon>
+    <Compile Include="View\ISnakeView.cs" />
+    <EmbeddedResource Include="View\SnakeFormView.resx">
+      <DependentUpon>SnakeFormView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +98,7 @@
     </Compile>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -126,6 +132,9 @@
       <ProductName>Установщик Windows 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="docs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

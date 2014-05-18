@@ -1,11 +1,13 @@
 ﻿using System;
+using SnakeArray.Model;
 
-namespace SnakeArray
+
+namespace SnakeArray.Service
 {
         ///<summary>
-        /// Класс для обработки массива.
+        /// Класс для заполнения массива числами "змейкой".
         /// </summary>
-        class Service
+        public class SnakeService : ISnakeService
         {
             private int[,] _array;
             private int _numColumns;
@@ -18,12 +20,7 @@ namespace SnakeArray
             private enum Direction { Right, Down, Left, Up };
             private Direction _currentDir = Direction.Right;
 
-
-            /// Заполняет массив "змейкой".
-            /// <exception cref="MissingMemberException">
-            /// Неверное использование перечисления Direction
-            /// </exception>
-            public Model CalculateModel(int numColumns, int numRows)
+            public SnakeModel CalculateModel(int numColumns, int numRows)
             {
                 _numRows = numRows;
                 _numColumns = numColumns;
@@ -35,7 +32,7 @@ namespace SnakeArray
                     _array[_x, _y] = counter;
                 }
                 while (FindNext());
-                return new Model(_numColumns, _numRows, _array);
+                return new SnakeModel (_numColumns, _numRows, _array);
             }
 
 
@@ -70,7 +67,6 @@ namespace SnakeArray
                     if (tmpX >= 0 && tmpX < _numColumns &&
                          tmpY >= 0 && tmpY < _numRows)
                     {
-
                         if (_array[tmpX, tmpY] == 0)
                         {
                             _x = tmpX;

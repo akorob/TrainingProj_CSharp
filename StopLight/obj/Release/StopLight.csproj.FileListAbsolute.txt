@@ -11,3 +11,6 @@ C:\work\SnakeArray\StopLight\obj\Release\GenerateResource-ResGen.read.1.tlog
 C:\work\SnakeArray\StopLight\obj\Release\GenerateResource-ResGen.write.1.tlog
 C:\work\SnakeArray\StopLight\obj\Release\StopLight.exe
 C:\work\SnakeArray\StopLight\obj\Release\StopLight.pdb
+c:\work\SnakeArray\StopLight\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+c:\work\SnakeArray\StopLight\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+c:\work\SnakeArray\StopLight\bin\Release\Microsoft.Practices.Unity.Configuration.xml

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Practices.Unity;
 
+
 namespace TestMVP
 {
     public partial class FormView : Form, IView

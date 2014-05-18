@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SnakeArray
+﻿namespace SnakeArray.Model
 {
-    class Model
+    /// <summary>
+    /// Класс для хранения заполненного массива, M в MVP.
+    /// </summary>
+    public class SnakeModel
     {
         public int NumRows { get; private set; }
         public int NumColumns { get; private set; }
         public int[,] Array { get; private set; }
 
-        public Model(int numColumns, int numRows, int[,] array)
+        public SnakeModel(int numColumns, int numRows, int[,] array)
         {
             NumColumns = numColumns;
             NumRows = numRows;

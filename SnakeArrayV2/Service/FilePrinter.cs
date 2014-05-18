@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
+using NLog;
+using SnakeArray.Model;
 
-namespace SnakeArray
+namespace SnakeArray.Service
 {
+    ///<summary>
+    /// Вывод заполненного массива в файл.
+    /// </summary>
     class FilePrinter : IPrinter
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public String Path { get; set; }
 
-	    public void Print(Model model)
+	    public void Print(SnakeModel model)
 	    {
 		    var sb = new StringBuilder();
 		    for (var j = 0; j < model.NumRows; j++)
@@ -30,11 +33,13 @@ namespace SnakeArray
 				    w.WriteLine(sb.ToString());
 					MessageBox.Show("Данные успешно сохранены", 
 					"Сохранение файла", MessageBoxButtons.OK, MessageBoxIcon.None );
+                    logger.Info("Массив успешно сохранен в файл.");
 			    }
 
 		    }
 		    catch (IOException ex)
 		    {
+                logger.Info("Ошибка сохранения в файл. " + ex.ToString());
 			    MessageBox.Show("Произошла ошибка \n" + ex.ToString(),
 				    "Печать в файл", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		    }
