@@ -1,1 +1,0 @@
-C:\work\VS2010\WFormsApp_EmbPersSettings\bin\Debug\WindowsForms.exe.config

@@ -2,5 +2,8 @@ C:\work\VS2010\ConsoleApplication2\obj\x86\Release\ConsoleApplication2.exe
 C:\work\VS2010\ConsoleApplication2\obj\x86\Release\ConsoleApplication2.pdb
 C:\work\VS2010\ConsoleApplicationV1\obj\x86\Release\ConsoleApplication2.exe
 C:\work\VS2010\ConsoleApplicationV1\obj\x86\Release\ConsoleApplication2.pdb
+c:\work\SnakeArray\ConsoleApplicationV1\bin\Release\ConsoleApplication2.exe
+c:\work\SnakeArray\ConsoleApplicationV1\bin\Release\ConsoleApplication2.pdb
+c:\work\SnakeArray\ConsoleApplicationV1\obj\x86\Release\ResolveAssemblyReference.cache
 c:\work\SnakeArray\ConsoleApplicationV1\obj\x86\Release\ConsoleApplication2.exe
 c:\work\SnakeArray\ConsoleApplicationV1\obj\x86\Release\ConsoleApplication2.pdb
